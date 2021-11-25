@@ -30,12 +30,13 @@ function App() {
       setMinutes(minutes - 1)
       setSeconds(59)
     }
-    else {
+    else if (hours > 0) {
       setHours(hours - 1)
       setMinutes(59)
       setSeconds(59)
+    } else {
+      setRunningState(false)
     }
-    !hours && !minutes && !seconds && setRunningState(false)
   }
   
   useInterval(countdown, runningState
