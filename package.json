@@ -6,9 +6,8 @@
     "dev": "TAILWIND_MODE=watch vite",
     "build": "vite build",
     "serve": "vite preview",
-    "clean": "rm -rf dist/*",
-    "predeploy": "npm run clean && npm run build",
-    "deploy": "cd dist && git add --all && git commit -m \"Release at $(date)\" && git push"
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@tailwindcss/forms": "^0.3.4",
