@@ -1,160 +1,118 @@
-import { useState, useRef } from 'react'
+import { useState } from 'react';
 import { useInterval } from './hooks/useInterval';
-import logo from './assets/logo.svg'
-
-const IS_NUMBER = new RegExp(/^\d*$/,'gi')
-const clamp = (min, value, max) => value < min
-  ? min
-  : value > max
-    ? max
-    : value
-
-const within59 = (value) => clamp(0, value, 59)
-const within999 = (value) => clamp(0, value, 999)
+import logo from './assets/logo.svg';
+import Title from './Components/Title';
+import InputBar from './Components/InputBar';
+import ButtonBar from './Components/ButtonBar';
+import { IS_NUMBER, within59, within999 } from './utils/utils';
 
 function App() {
-  const [runningState, setRunningState] = useState(false)
-  const [hours, setHours] = useState(0)
-  const [minutes, setMinutes] = useState(0)
-  const [seconds, setSeconds] = useState(0)
+  const [runningState, setRunningState] = useState(false);
+  const [pausedState, setPausedState] = useState(false);
+  const [hours, setHours] = useState('');
+  const [minutes, setMinutes] = useState('');
+  const [seconds, setSeconds] = useState('');
+
+  const numberInputs = [
+    { label: 'Hours', value: hours, placeholder: 'HH' },
+    { label: 'Minutes', value: minutes, placeholder: 'MM' },
+    { label: 'Seconds', value: seconds, placeholder: 'SS' },
+  ];
+
+  const buttons = [
+    {
+      text: 'Start',
+      onClick: initTimer,
+      disabled: runningState || !hours && !minutes && !seconds,
+    },
+    {
+      text: 'Pause',
+      onClick: pauseTimer,
+      disabled: !runningState,
+    },
+    {
+      text: 'Stop',
+      onClick: stopTimer,
+      disabled: !pausedState && !runningState,
+    },
+  ];
 
   const setValue = {
-    setHours: (value) => setHours(within999(value)),
-    setMinutes: (value) => setMinutes(within59(value)),
-    setSeconds: (value) => setSeconds(within59(value)),
-  }
+    Hours: (value) => setHours(within999(value)),
+    Minutes: (value) => setMinutes(within59(value)),
+    Seconds: (value) => setSeconds(within59(value)),
+  };
 
-  function handleNumberChange({target: {name, value}}) {
-    IS_NUMBER.test(value) && setValue[name](Number(value))
+  function handleNumberChange({ target: { name, value } }) {
+    IS_NUMBER.test(value) && setValue[name](Number(value));
   }
 
   function countdown() {
     if (seconds > 0) {
-      setSeconds(seconds - 1)
+      setSeconds(seconds - 1);
     }
     else if (minutes > 0) {
-      setMinutes(minutes - 1)
-      setSeconds(59)
+      setMinutes(minutes - 1);
+      setSeconds(59);
     }
     else if (hours > 0) {
-      setHours(hours - 1)
-      setMinutes(59)
-      setSeconds(59)
+      setHours(hours - 1);
+      setMinutes(59);
+      setSeconds(59);
     } else {
-      setRunningState(false)
+      setRunningState(false);
     }
   }
-  
+
   useInterval(countdown, runningState
     ? 1000
-    : null)
-    
+    : null);
+
   function initTimer() {
-    setRunningState(true)
+    if (!hours) setHours(0);
+    if (!minutes) setMinutes(0);
+    if (!seconds) setSeconds(0);
+    setRunningState(true);
+    setPausedState(false);
   }
 
   function pauseTimer() {
-    setRunningState(false)
+    setRunningState(false);
+    setPausedState(true);
   }
-  
-  function stopTimer(){
-    setRunningState(false)
-    setHours(0)
-    setMinutes(0)
-    setSeconds(0)
+
+  function stopTimer() {
+    setRunningState(false);
+    setPausedState(false);
+    setHours('');
+    setMinutes('');
+    setSeconds('');
   }
 
   return (
     <div
       className="
-      from-gray-900
-      via-gray-700
-      to-gray-800
         bg-gradient-to-b
+        from-gray-900
+        via-gray-700
+        to-gray-800
+        h-screen
+        text-center
         grid
         place-content-center
-        h-screen
         gap-4
-        text-center
         font-tilt
       "
     >
-      {!runningState && (
-        <span className="text-6xl text-white shadow-text-neon">
-          Set the timer:
-        </span>
-      )}
-      <div className="flex items-center gap-4 justify-center">
-        <label htmlFor="initial-hours" className="flex flex-col w-32 h-32 text-color-one  shadow-text-neon">
-          <span className="text-3xl">Hours</span>
-          <input
-            type="text"
-            pattern="/\d/"
-            name="setHours"
-            id="initial-hours"
-            min="0"
-            value={hours}
-            onChange={handleNumberChange}
-            disabled={runningState}
-            className="text-center text-6xl rounded select-none bg-transparent border-color-one shadow-text-neon p-0"
-          />
-        </label>
-        <label htmlFor="initial-minutes" className="flex flex-col w-32 h-32 text-color-one  shadow-text-neon">
-          <span className="text-3xl">Minutes</span>
-          <input
-            type="text"
-            pattern="\d"
-            name="setMinutes"
-            id="initial-minutes"
-            min="0"
-            max="59"
-            value={minutes}
-            onChange={handleNumberChange}
-            disabled={runningState}
-            className="text-center text-6xl rounded select-none bg-transparent border-color-one  shadow-text-neon p-0"
-          />
-        </label>
-        <label htmlFor="initial-seconds" className="flex flex-col w-32 h-32 text-color-one  shadow-text-neon">
-          <span className="text-3xl ">Seconds</span>
-          <input
-            type="text"
-            pattern="/\d/"
-            name="setSeconds"
-            id="initial-seconds"
-            min="0"
-            max="59"
-            value={seconds}
-            onChange={handleNumberChange}
-            disabled={runningState}
-            className="text-center text-6xl rounded select-none bg-transparent border-color-one  shadow-text-neon p-0"
-          />
-        </label>
-      </div>
-      <div className="flex justify-around">
-        <button
-          onClick={initTimer}
-          disabled={runningState || !hours && !minutes && !seconds}
-          className="bg-color-four transform hover:bg-color-three hover:-translate-y-1 hover:shadow-2xl focus:bg-color-five focus:translate-y-1 rounded-full py-2 px-4 disabled:bg-gray-400 disabled:transform-none disabled:shadow-none"
-        >
-            Start
-        </button>
-        <button
-          onClick={pauseTimer}
-          disabled={!runningState}
-          className="bg-color-four transform hover:bg-color-three hover:-translate-y-1 hover:shadow-2xl focus:bg-color-five focus:translate-y-1 rounded-full py-2 px-4 disabled:bg-gray-400 disabled:transform-none disabled:shadow-none"
-        >
-            Pause
-        </button>
-        <button
-          onClick={stopTimer}
-          disabled={!runningState}
-          className="bg-color-four transform hover:bg-color-three hover:-translate-y-1 hover:shadow-2xl focus:bg-color-five focus:translate-y-1 rounded-full py-2 px-4 disabled:bg-gray-400 disabled:transform-none disabled:shadow-none"
-        >
-            Stop
-        </button>
-      </div>
+      { !runningState && <Title /> }
+      <InputBar
+        onChange={ handleNumberChange }
+        disabled={ runningState }
+        inputs={ numberInputs }
+      />
+      <ButtonBar buttons={ buttons } />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "homepage": "https://israelss.github.io/reactcron",
   "scripts": {
-    "dev": "TAILWIND_MODE=watch vite",
+    "dev": "TAILWIND_MODE=watch vite --host",
     "build": "vite build",
     "serve": "vite preview",
     "predeploy": "npm run build",
