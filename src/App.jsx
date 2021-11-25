@@ -3,6 +3,14 @@ import { useInterval } from './hooks/useInterval';
 import logo from './assets/logo.svg'
 
 const IS_NUMBER = new RegExp(/^\d*$/,'gi')
+const clamp = (min, value, max) => value < min
+  ? min
+  : value > max
+    ? max
+    : value
+
+const within59 = (value) => clamp(0, value, 59)
+const within999 = (value) => clamp(0, value, 999)
 
 function App() {
   const [runningState, setRunningState] = useState(false)
@@ -13,9 +21,9 @@ function App() {
   const [seconds, setSeconds] = useState(0)
 
   const setValue = {
-    setHours,
-    setMinutes,
-    setSeconds,
+    setHours: (value) => setHours(within999(value)),
+    setMinutes: (value) => setMinutes(within59(value)),
+    setSeconds: (value) => setSeconds(within59(value)),
   }
 
   function handleNumberChange({target: {name, value}}) {
