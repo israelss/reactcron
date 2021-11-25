@@ -6,7 +6,7 @@
     "dev": "TAILWIND_MODE=watch vite",
     "build": "vite build",
     "serve": "vite preview",
-    "predeploy": "npm run build",
+    "predeploy": "npm run build && git add dist -f && git commit -m \"Release at $(date)\"",
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
