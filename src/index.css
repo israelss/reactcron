@@ -12,6 +12,9 @@
 
 @layer utilities {
   .shadow-text-neon {
-    text-shadow: 0 0 7px currentColor, 0 0 21px currentColor, 0 0 82px currentColor, 0 0 102px currentColor;
+    text-shadow: 0 0 1px white, 0 0 7px currentColor, 0 0 21px currentColor, 0 0 82px currentColor, 0 0 102px currentColor;
+  }
+  .shadow-text-none {
+    text-shadow: none;
   }
 }
