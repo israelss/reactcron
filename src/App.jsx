@@ -14,8 +14,6 @@ const within999 = (value) => clamp(0, value, 999)
 
 function App() {
   const [runningState, setRunningState] = useState(false)
-  const [timeOut, setTimeOut] = useState(false)
-  const [timeLeft, setTimeLeft] = useState(0)
   const [hours, setHours] = useState(0)
   const [minutes, setMinutes] = useState(0)
   const [seconds, setSeconds] = useState(0)
