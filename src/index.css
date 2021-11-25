@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: 'Tilt-Neon';
+    font-display: swap;
+    src: url('./assets/Tilt-Neon.woff2') format('woff2');
+  }
+}
+
+@layer utilities {
+  .shadow-text-neon {
+    text-shadow: 0 0 7px currentColor, 0 0 21px currentColor, 0 0 82px currentColor, 0 0 102px currentColor;
+  }
+}
