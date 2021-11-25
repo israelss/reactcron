@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react'
 import { useInterval } from './hooks/useInterval';
-import logo from './logo.svg'
+import logo from './assets/logo.svg'
 
 const IS_NUMBER = new RegExp(/^\d*$/,'gi')
 
@@ -58,67 +58,94 @@ function App() {
   }
 
   return (
-    <div className="App">
-      {!runningState && <span>Set the timer:</span>}
-      <label htmlFor="initial-hours">
-        <span>Hours</span>
-        <input
-          type="text"
-          pattern="/\d/"
-          name="setHours"
-          id="initial-hours"
-          min="0"
-          value={hours}
-          onChange={handleNumberChange}
-          disabled={runningState}
-        />
-      </label>
-      <label htmlFor="initial-minutes">
-        <span>Minutes (0 - 59)</span>
-        <input
-          type="text"
-          pattern="\d"
-          name="setMinutes"
-          id="initial-minutes"
-          min="0"
-          max="59"
-          value={minutes}
-          onChange={handleNumberChange}
-          disabled={runningState}
-        />
-      </label>
-      <label htmlFor="initial-seconds">
-        <span>Seconds (0 - 59)</span>
-        <input
-          type="text"
-          pattern="/\d/"
-          name="setSeconds"
-          id="initial-seconds"
-          min="0"
-          max="59"
-          value={seconds}
-          onChange={handleNumberChange}
-          disabled={runningState}
-        />
-      </label>
-      <button
-        onClick={initTimer}
-        disabled={runningState || !hours && !minutes && !seconds}
-      >
-          Start
-      </button>
-      <button
-        onClick={pauseTimer}
-        disabled={!runningState}
-      >
-          Pause
-      </button>
-      <button
-        onClick={stopTimer}
-        disabled={!runningState}
-      >
-          Stop
-      </button>
+    <div
+      className="
+      from-gray-900
+      via-gray-700
+      to-gray-800
+        bg-gradient-to-b
+        grid
+        place-content-center
+        h-screen
+        gap-4
+        text-center
+        font-tilt
+      "
+    >
+      {!runningState && (
+        <span className="text-6xl text-white shadow-text-neon">
+          Set the timer:
+        </span>
+      )}
+      <div className="flex items-center gap-4 justify-center">
+        <label htmlFor="initial-hours" className="flex flex-col w-32 h-32 text-color-one  shadow-text-neon">
+          <span className="text-3xl">Hours</span>
+          <input
+            type="text"
+            pattern="/\d/"
+            name="setHours"
+            id="initial-hours"
+            min="0"
+            value={hours}
+            onChange={handleNumberChange}
+            disabled={runningState}
+            className="text-center text-6xl rounded select-none bg-transparent border-color-one shadow-text-neon p-0"
+          />
+        </label>
+        <label htmlFor="initial-minutes" className="flex flex-col w-32 h-32 text-color-one  shadow-text-neon">
+          <span className="text-3xl">Minutes</span>
+          <input
+            type="text"
+            pattern="\d"
+            name="setMinutes"
+            id="initial-minutes"
+            min="0"
+            max="59"
+            value={minutes}
+            onChange={handleNumberChange}
+            disabled={runningState}
+            className="text-center text-6xl rounded select-none bg-transparent border-color-one  shadow-text-neon p-0"
+          />
+        </label>
+        <label htmlFor="initial-seconds" className="flex flex-col w-32 h-32 text-color-one  shadow-text-neon">
+          <span className="text-3xl ">Seconds</span>
+          <input
+            type="text"
+            pattern="/\d/"
+            name="setSeconds"
+            id="initial-seconds"
+            min="0"
+            max="59"
+            value={seconds}
+            onChange={handleNumberChange}
+            disabled={runningState}
+            className="text-center text-6xl rounded select-none bg-transparent border-color-one  shadow-text-neon p-0"
+          />
+        </label>
+      </div>
+      <div className="flex justify-around">
+        <button
+          onClick={initTimer}
+          disabled={runningState || !hours && !minutes && !seconds}
+          className="bg-color-four transform hover:bg-color-three hover:-translate-y-1 hover:shadow-2xl focus:bg-color-five focus:translate-y-1 rounded-full py-2 px-4 disabled:bg-gray-400 disabled:transform-none disabled:shadow-none"
+        >
+            Start
+        </button>
+        <button
+          onClick={pauseTimer}
+          disabled={!runningState}
+          className="bg-color-four transform hover:bg-color-three hover:-translate-y-1 hover:shadow-2xl focus:bg-color-five focus:translate-y-1 rounded-full py-2 px-4 disabled:bg-gray-400 disabled:transform-none disabled:shadow-none"
+        >
+            Pause
+        </button>
+        <button
+          onClick={stopTimer}
+          disabled={!runningState}
+          className="bg-color-four transform hover:bg-color-three hover:-translate-y-1 hover:shadow-2xl focus:bg-color-five focus:translate-y-1 rounded-full py-2 px-4 disabled:bg-gray-400 disabled:transform-none disabled:shadow-none"
+        >
+            Stop
+        </button>
+      </div>
     </div>
   )
 }
