@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useInterval } from './hooks/useInterval';
-import logo from './assets/logo.svg';
 import Title from './Components/Title';
 import InputBar from './Components/InputBar';
 import ButtonBar from './Components/ButtonBar';
@@ -61,6 +60,7 @@ function App() {
       setSeconds(59);
     } else {
       setRunningState(false);
+      setPausedState(false);
     }
   }
 
@@ -96,21 +96,21 @@ function App() {
         from-gray-900
         via-gray-700
         to-gray-800
-        h-screen
-        text-center
-        grid
-        place-content-center
-        gap-4
         font-tilt
+        text-features
+        text-center
       "
     >
-      { !runningState && <Title /> }
-      <InputBar
-        onChange={ handleNumberChange }
-        disabled={ runningState }
-        inputs={ numberInputs }
-      />
-      <ButtonBar buttons={ buttons } />
+      <div
+        className="bg-brick-pattern h-screen grid place-content-center gap-4">
+        <Title runningState={ runningState } />
+        <InputBar
+          onChange={ handleNumberChange }
+          disabled={ runningState }
+          inputs={ numberInputs }
+        />
+        <ButtonBar buttons={ buttons } />
+      </div>
     </div>
   );
 }

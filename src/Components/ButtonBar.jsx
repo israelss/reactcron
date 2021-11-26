@@ -1,7 +1,6 @@
 import Button from "./Button";
 
-export default function ButtonBar(props) {
-  const { buttons } = props;
+export default function ButtonBar({ buttons }) {
   return (
     <div className="grid justify-items-center grid-cols-3 gap-4">
       {

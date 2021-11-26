@@ -11,10 +11,25 @@
 }
 
 @layer utilities {
-  .shadow-text-neon {
-    text-shadow: 0 0 1px white, 0 0 7px currentColor, 0 0 21px currentColor, 0 0 82px currentColor, 0 0 102px currentColor;
+  .text-neon {
+    -webkit-text-fill-color: rgba(255 255 255 / 0.15);
   }
-  .shadow-text-none {
+
+  .text-neon-off {
     text-shadow: none;
+    -webkit-text-stroke: 1px black;
+  }
+
+  .text-neon-on {
+    text-shadow: 0 0 1px rgba(255 255 255 / 1), 0 0 7px currentColor, 0 0 21px currentColor, 0 0 82px currentColor;
+    -webkit-text-stroke: 0.2px currentColor;
+  }
+
+  .text-features {
+    font-feature-settings: "ss01", "ss02", "dlig";
+  }
+
+  .transition-neon {
+    @apply transition-all ease-in-out duration-300
   }
 }
