@@ -4,6 +4,7 @@ import Title from './Components/Title';
 import InputBar from './Components/InputBar';
 import ButtonBar from './Components/ButtonBar';
 import { IS_NUMBER, within59, within999 } from './utils/utils';
+import Banner from './Components/Banner';
 
 function App() {
   const [runningState, setRunningState] = useState(false);
@@ -101,6 +102,7 @@ function App() {
         text-center
       "
     >
+      <Banner />
       <div
         className="bg-brick-pattern h-screen grid place-content-center gap-4">
         <Title runningState={ runningState } />
