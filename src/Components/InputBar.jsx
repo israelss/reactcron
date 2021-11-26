@@ -1,14 +1,8 @@
 import Input from "./Input";
 
-export default function InputBar(props) {
-  const {
-    inputs,
-    onChange,
-    disabled,
-  } = props;
-
+export default function InputBar({ inputs, onChange, disabled }) {
   return (
-    <div className="flex items-center justify-center gap-4">
+    <div className="grid justify-items-center grid-cols-3 gap-4">
       {
         inputs.map(({ label, value, placeholder }) => (
           <Input

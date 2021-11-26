@@ -1,0 +1,11 @@
+<svg width="150" height="40" stroke-width="1" stroke="rgba(255 255 255 / 0.03)"
+fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M0,0 l50, 0 l0,20 l-50,0 z" />
+  <path d="M50,0 l50, 0 l0,20 l-50,0 z" />
+  <path d="M100,0 l50, 0 l0,20 l-50,0 z" />
+
+  <path d="M0,20 l25, 0 l0,20 l-25,0" />
+  <path d="M25,20 l50, 0 l0,20 l-50,0 z" />
+  <path d="M75,20 l50, 0 l0,20 l-50,0 z" />
+  <path d="M150,20 l-25, 0 l0,20 l25,0" />
+</svg>
