@@ -1,3 +1,5 @@
+const IS_NUMBER = new RegExp(/^\d*$/);
+
 const clamp = (min, value, max) => value < min
   ? min
   : value > max
@@ -6,5 +8,4 @@ const clamp = (min, value, max) => value < min
 
 export const within59 = (value) => clamp(0, value, 59);
 export const within999 = (value) => clamp(0, value, 999);
-
-export const IS_NUMBER = new RegExp(/^\d*$/, 'gi');
+export const isNotANumber = (value) => !IS_NUMBER.test(value);
