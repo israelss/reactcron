@@ -3,7 +3,7 @@ import { useInterval } from './hooks/useInterval';
 import Title from './Components/Title';
 import InputBar from './Components/InputBar';
 import ButtonBar from './Components/ButtonBar';
-import { IS_NUMBER, within59, within999 } from './utils/utils';
+import { isNotANumber, within59, within999 } from './utils/utils';
 import Banner from './Components/Banner';
 
 function App() {
@@ -44,7 +44,8 @@ function App() {
   };
 
   function handleNumberChange({ target: { name, value } }) {
-    IS_NUMBER.test(value) && setValue[name](Number(value));
+    if (isNotANumber(value)) return;
+    setValue[name](Number(value));
   }
 
   function countdown() {
