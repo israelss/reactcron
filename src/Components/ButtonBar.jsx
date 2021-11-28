@@ -1,18 +1,21 @@
-import Button from "./Button";
+import { Button } from "./Button";
+import { Responsive } from "./Responsive";
 
-export default function ButtonBar({ buttons }) {
+export function ButtonBar({ buttons }) {
   return (
-    <div className="grid justify-items-center grid-cols-3 gap-4">
-      {
-        buttons.map(({ text, onClick, disabled }) => (
-          <Button
-            key={ text }
-            text={ text }
-            onClick={ onClick }
-            disabled={ disabled }
-          />
-        ))
-      }
-    </div>
+    <Responsive>
+      <div className="grid justify-items-center grid-cols-3 gap-4">
+        {
+          buttons.map(({ text, onClick, disabled }) => (
+            <Button
+              key={ text }
+              text={ text }
+              onClick={ onClick }
+              disabled={ disabled }
+            />
+          ))
+        }
+      </div>
+    </Responsive>
   );
 }

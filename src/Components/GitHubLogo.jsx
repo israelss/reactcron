@@ -1,4 +1,4 @@
-export default function GitHubLogo() {
+export function GitHubLogo() {
   return (
     <svg version="1.1" width="40px" height="40px" viewBox="0 0 43.44 42.37" xmlns="http://www.w3.org/2000/svg">
       <g transform="matrix(1.333 0 0 -1.333 -181.8 592.7)">
