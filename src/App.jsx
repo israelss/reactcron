@@ -1,10 +1,7 @@
 import { useState } from 'react';
 import { useInterval } from './hooks/useInterval';
-import Title from './Components/Title';
-import InputBar from './Components/InputBar';
-import ButtonBar from './Components/ButtonBar';
+import { Title, InputBar, ButtonBar, Banner } from './Components';
 import { isNotANumber, within59, within999 } from './utils/utils';
-import Banner from './Components/Banner';
 
 function App() {
   const [runningState, setRunningState] = useState(false);
@@ -101,11 +98,12 @@ function App() {
         font-tilt
         text-features
         text-center
+        min-w-max
       "
     >
       <Banner />
       <div
-        className="bg-brick-pattern h-screen grid place-content-center gap-4">
+        className="bg-brick-pattern min-h-screen grid place-content-center gap-4 w-screen min-w-max overflow-auto">
         <Title runningState={ runningState } />
         <InputBar
           onChange={ handleNumberChange }

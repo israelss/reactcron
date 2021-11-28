@@ -1,4 +1,4 @@
-export default function Input({ value, onChange, disabled, label, placeholder }) {
+export function Input({ value, onChange, disabled, label, placeholder }) {
   return (
     <label
       htmlFor="initial-hours"

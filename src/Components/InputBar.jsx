@@ -1,20 +1,23 @@
-import Input from "./Input";
+import { Input } from "./Input";
+import { Responsive } from "./Responsive";
 
-export default function InputBar({ inputs, onChange, disabled }) {
+export function InputBar({ inputs, onChange, disabled }) {
   return (
-    <div className="grid justify-items-center grid-cols-3 gap-4">
-      {
-        inputs.map(({ label, value, placeholder }) => (
-          <Input
-            key={ label }
-            value={ value }
-            onChange={ onChange }
-            disabled={ disabled }
-            label={ label }
-            placeholder={ placeholder }
-          />
-        ))
-      }
-    </div>
+    <Responsive extraClasses="md:py-8 lg:py-10">
+      <div className="grid justify-items-center grid-cols-3 gap-4">
+        {
+          inputs.map(({ label, value, placeholder }) => (
+            <Input
+              key={ label }
+              value={ value }
+              onChange={ onChange }
+              disabled={ disabled }
+              label={ label }
+              placeholder={ placeholder }
+            />
+          ))
+        }
+      </div>
+    </Responsive>
   );
 }

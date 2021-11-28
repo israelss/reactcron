@@ -1,6 +1,6 @@
-import GitHubLogo from "./GitHubLogo";
+import { GitHubLogo } from "./GitHubLogo";
 
-export default function Banner() {
+export function Banner() {
   return (
     <a href="https://github.com/israelss/reactcron">
       <div className="grid justify-content-center transform bg-gray-300 border-yellow-500 shadow-neon-sm fixed top-0 right-0 w-20 h-20 rounded-bl-full">

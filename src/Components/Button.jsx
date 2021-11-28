@@ -1,4 +1,4 @@
-export default function Button({ onClick, disabled, text }) {
+export function Button({ onClick, disabled, text }) {
 
   return (
     <button
@@ -8,14 +8,16 @@ export default function Button({ onClick, disabled, text }) {
         text-yellow-300
         border-yellow-300
         rounded-2xl
-        py-2
-        px-4
         border
+        py-1
+        px-2
         text-neon
         text-neon-on
-        text-3xl
+        text-2xl
         transform
         transition-neon
+        sm:py-2
+        sm:px-4
         sm:text-4xl
         hover:text-yellow-200
         hover:border-yellow-500
