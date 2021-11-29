@@ -23,6 +23,7 @@ export function Input({ value, onChange, disabled, label, placeholder }) {
           text-center
           text-5xl
           transition-neon
+          border-current
           sm:text-6xl
           focus:border-current
           placeholder-shown:text-neon-off
